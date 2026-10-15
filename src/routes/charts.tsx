@@ -94,15 +94,13 @@ function ChartView({ spec }: { spec: Spec }) {
     spec.series.forEach((s, i) => { o[s] = r.values[i] ?? 0; });
     return o;
   });
-  const axes = (
-    <>
-      <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-      <XAxis dataKey={spec.xKey} stroke="var(--muted-foreground)" fontSize={12} />
-      <YAxis stroke="var(--muted-foreground)" fontSize={12} />
-      <Tooltip contentStyle={{ background: "var(--popover)", border: "1px solid var(--border)", borderRadius: 8 }} />
-      <Legend />
-    </>
-  );
+  const axes = [
+    <CartesianGrid key="g" strokeDasharray="3 3" stroke="var(--border)" />,
+    <XAxis key="x" dataKey={spec.xKey} stroke="var(--muted-foreground)" fontSize={12} />,
+    <YAxis key="y" stroke="var(--muted-foreground)" fontSize={12} />,
+    <Tooltip key="t" contentStyle={{ background: "var(--popover)", border: "1px solid var(--border)", borderRadius: 8 }} />,
+    <Legend key="l" />,
+  ];
   let chart;
   if (spec.chartType === "pie") {
     chart = (
