@@ -6,7 +6,7 @@ const MODEL = "openai/gpt-6-astra";
 const RUN_ID = "X-Lovable-AIG-Run-ID";
 
 function provider() {
-  const key = process.env.LOVABLE_API_KEY;
+  const key = process.env["LOVABLE_API_KEY"];
   if (!key) throw new Error("AI is not configured.");
   let runId: string | undefined;
   return createOpenAI({

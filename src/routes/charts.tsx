@@ -91,7 +91,7 @@ function ChartsPage() {
 function ChartView({ spec }: { spec: Spec }) {
   const rows = spec.rows.map((r) => {
     const o: Record<string, string | number> = { [spec.xKey]: r.label };
-    spec.series.forEach((s, i) => (o[s] = r.values[i] ?? 0));
+    spec.series.forEach((s, i) => { o[s] = r.values[i] ?? 0; });
     return o;
   });
   const axes = (
