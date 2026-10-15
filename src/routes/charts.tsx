@@ -45,7 +45,7 @@ function ChartsPage() {
   const [spec, setSpec] = useState<Spec | null>(null);
 
   async function run() {
-    if (data.trim().length < 5) return toast.error("Paste some data first.");
+    if (data.trim().length < 5) { toast.error("Paste some data first."); return; }
     setLoading(true);
     try {
       setSpec(await buildChart({ data: { data, request: ask } }));
@@ -107,7 +107,7 @@ function ChartView({ spec }: { spec: Spec }) {
   if (spec.chartType === "pie") {
     chart = (
       <PieChart>
-        <Pie data={rows} dataKey={spec.series[0]} nameKey={spec.xKey} outerRadius="80%" label>
+        <Pie data={rows} dataKey={spec.series[0] ?? "value"} nameKey={spec.xKey} outerRadius="80%" label>
           {rows.map((_, i) => <Cell key={i} fill={colors[i % colors.length]} />)}
         </Pie>
         <Tooltip /><Legend />

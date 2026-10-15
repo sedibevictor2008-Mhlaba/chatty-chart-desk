@@ -54,7 +54,7 @@ function EmailPage() {
   const [result, setResult] = useState<{ subject: string; body: string } | null>(null);
 
   async function run() {
-    if (purpose.trim().length < 3) return toast.error("Tell us what the email should say.");
+    if (purpose.trim().length < 3) { toast.error("Tell us what the email should say."); return; }
     setLoading(true);
     try {
       setResult(await generateEmail({ data: { purpose, recipient, tone, length } }));

@@ -36,7 +36,7 @@ function MeetingsPage() {
   const [r, setR] = useState<Summary | null>(null);
 
   async function run() {
-    if (notes.trim().length < 20) return toast.error("Paste a bit more of the meeting notes.");
+    if (notes.trim().length < 20) { toast.error("Paste a bit more of the meeting notes."); return; }
     setLoading(true);
     try {
       setR(await summarizeMeeting({ data: { notes } }));
